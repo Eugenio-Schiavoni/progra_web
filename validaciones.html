@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Complejo con Checkbox</title>
+</head>
+<body>
+    <form id="miFormulario" onsubmit="return validarFormulario()">
+        <h2>Formulario de Preferencias</h2>
+        
+        <!-- Checkbox Grupo -->
+        <h3>Selecciona tus intereses (al menos uno):</h3>
+        <label for="interes1"><input type="checkbox" id="interes1" name="intereses"> Tecnología</label><br>
+        <label for="interes2"><input type="checkbox" id="interes2" name="intereses"> Deporte</label><br>
+        <label for="interes3"><input type="checkbox" id="interes3" name="intereses"> Arte</label><br><br>
+
+        <!-- Botón de envío -->
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        function validarFormulario() {
+            // Acceder a los elementos checkbox
+            var interes1 = document.getElementById('interes1').checked;
+            var interes2 = document.getElementById('interes2').checked;
+            var interes3 = document.getElementById('interes3').checked;
+
+            // Verificar que al menos uno esté seleccionado
+            if (!interes1 && !interes2 && !interes3) {
+                alert("Por favor, selecciona al menos un interés.");
+                return false;
+            }
+
+            return true; // Retorna true si al menos uno está seleccionado
+        }
+    </script>
+</body>
+</html>

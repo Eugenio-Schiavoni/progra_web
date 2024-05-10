@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Complejo con jQuery Validation</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.2/jquery.validate.min.js"></script>
+</head>
+<body>
+    <form id="miFormulario">
+        <h2>Formulario de Preferencias</h2>
+        
+        <!-- Checkbox Grupo -->
+        <h3>Selecciona tus intereses (al menos uno):</h3>
+        <label for="interes1"><input type="checkbox" id="interes1" name="intereses" class="intereses"> Tecnología</label><br>
+        <label for="interes2"><input type="checkbox" id="interes2" name="intereses" class="intereses"> Deporte</label><br>
+        <label for="interes3"><input type="checkbox" id="interes3" name="intereses" class="intereses"> Arte</label><br><br>
+
+        <!-- Botón de envío -->
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            // Extendiendo el método para validar grupo de checkboxes
+            jQuery.validator.addMethod("checkIntereses", function(value, element) {
+                return $('input.intereses:checked').length > 0;
+            }, "Por favor, selecciona al menos un interés.");
+
+            // Configuración de la validación
+            $("#miFormulario").validate({
+                rules: {
+                    'intereses': {
+                        checkIntereses: true
+                    }
+                },
+                messages: {
+                    'intereses': {
+                        checkIntereses: "Selecciona al menos un interés."
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

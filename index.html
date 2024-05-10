@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang=”en”>
+<head>
+    <meta charset=”UTF-8″ />
+    <title>Datos del Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="styles.css"></head>
+<body style="background-color: antiquewhite;">
+    <h1 style="text-align: center;"> <b>Registro de Personas</b></h1><br>
+
+    <div class="container mt-2">
+        <form id="myForm">
+            <div class="row">
+                <div class="col">
+                    <label for="exampleInputUser" class="form-label">Direccion</label>
+                    <input type="text" class="form-control" id="txtDireccion" name="txtDireccion">
+                </div>
+                <div class="col">
+                    <label for="exampleInputUser" class="form-label">Altura</label>
+                    <input type="text" class="form-control" id="txtAltura" name="txtAltura">
+                </div>
+                <div class="col">
+                    <label for="exampleInputUser" class="form-label">Provincia</label>
+                    <input type="text" class="form-control" id="txtProvincia" name="txtProvincia">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <label for="exampleInputUser" class="form-label">Ciudad</label>
+                    <input type="text" class="form-control" id="txtCiudad" name="txtCiudad">
+                </div>
+                <div class="col">
+                    <label for="exampleInputUser" class="form-label">Barrio</label>
+                    <input type="text" class="form-control" id="txtBarrio" name="txtBarrio">
+                </div>
+                <div class="col">
+                    <label for="exampleInputUser" class="form-label">Numero de Telefono</label>
+                    <input type="text" class="form-control" id="txtNumeroTelefono" name="txtNumeroTelefono">
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="button">Enviar</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            console.log("Hola")
+            $("#myForm").validate( {
+                rules: {
+                    txtDireccion: "required",
+                    txtAltura: "required",
+                    txtProvincia: "required",
+                    txtCiudad: "required",
+                    txtBarrio: "required",
+                    txtNumeroTelefono: "required"
+                },
+                messages: {
+                    txtDireccion: "Falto ingresar una direccion",
+                    txtAltura: "Falto ingresar una altura",
+                    txtProvincia: "Falto ingresar una provincia",
+                    txtCiudad: "Falto ingresar una ciudad",
+                    txtBarrio: "Falto ingresar una barrio",
+                    txtNumeroTelefono: "Falto ingresar una numero telefonico"
+                },
+                submitHandler: function(form) {
+                    generarJSON()
+                    mostrarJSON()
+                }
+            })
+        })
+        
+        function generarJSON() {
+            var txtDireccion = document.getElementById("txtDireccion").value
+            var txtProvincia = document.getElementById("txtProvincia").value
+            var txtCiudad = document.getElementById("txtCiudad").value
+            var txtAltura = document.getElementById("txtAltura").value
+            var txtBarrio = document.getElementById("txtBarrio").value
+            var txtNumeroTelefono = document.getElementById("txtNumeroTelefono").value
+            var usuarioQueryString = GetParameters("user")
+            
+            const jsonDataFormat = {
+                usuario: usuarioQueryString,
+                direccion: txtDireccion,
+                altura: txtAltura,
+                provincia: txtProvincia,
+                ciudad: txtCiudad,
+                barrio: txtBarrio,
+                numeroTelefonico: txtNumeroTelefono
+            };
+
+            const jsonData = JSON.stringify(jsonDataFormat)
+
+            localStorage.setItem("userInformation", jsonData)
+            console.log("Datos guardados.")
+        }
+
+        function GetParameters(param){
+                var url = window.location.href.slice(window.location.href.indexOf('?') + 1)
+            .split('&')
+
+            for(var i = 0; i< url.length; i++){
+                var urlParam = url[i].split('=')
+                if(urlParam[0] == param){
+                    return urlParam[1]
+                }
+            }
+        }
+
+        function mostrarJSON() {
+            const jsonLocalStorage = localStorage.getItem("userInformation")
+            const jsonObject = JSON.parse(jsonLocalStorage)
+            alert(jsonObject.usuario)
+            alert(jsonObject.direccion)
+            alert(jsonObject.altura)
+            alert(jsonObject.provincia)
+            alert(jsonObject.ciudad)
+            alert(jsonObject.barrio)
+            alert(jsonObject.numeroTelefonico)
+        }
+      </script>
+</body>
+</html>
+
+<!DOCTYPE html>

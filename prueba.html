@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="row">
+                <label for="nombre" >Nombre</label>
+                <input type="text" id="nametxt">
+            </div>
+            <div class="row">
+                <label for="contras">Contraseña</label>
+
+
+            </div>
+        </form>
+    <br>
+
+    <button type="button" id="btnPush">Push Me  </button>
+
+    </div>
+    <script>
+        $(document).ready(function (){
+            $("#btnPush").click(function(event){
+                event.preventDefault();
+                hacerAlgo();
+            })
+        })
+
+        function hacerAlgo(){
+            var nombre = document.getElementById("nametxt").value;
+            alert(nombre);
+        }
+       
+    </script>
+    <button style="
+    background-color: #4CAF50; /* Verde */
+    margin: 10px; /* Margen alrededor del botón */
+    padding: 15px 32px; /* Espacio dentro del botón */
+    font-size: 16px; /* Tamaño del texto */
+    text-align: center; /* Alineación del texto */
+    display: inline-block; /* Tipo de display */
+    position: relative; /* Posicionamiento relativo */
+    width: 200px; /* Ancho del botón */
+    border-radius: 8px; /* Bordes redondeados */
+    opacity: 0.9; /* Semi-transparencia */
+    border: 2px solid #4CAF50; /* Borde verde */
+    color: white; /* Color del texto */
+    cursor: pointer; /* Cursor como pointer */
+">Click me!</button>
+
+</body>
+</html>
